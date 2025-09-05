@@ -1,5 +1,5 @@
-import Home from '@/views/Home.vue'
-import About from '@/views/About.vue'
+import Home from '@/views/Index.vue'
+import About from '@/views/Abouts.vue'
 import Projects from '@/views/Projects.vue'
 import TechPlayground from '@/views/TechPlayground.vue'
 import Blog from '@/views/Blog.vue'
