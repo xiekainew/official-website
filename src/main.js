@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createApp } from 'vue'
 import App from './App.vue'
 import routes from './router'
+import pinia from './stores'
 import * as Sentry from "@sentry/vue";
 
 let router = null;
@@ -16,6 +17,7 @@ function render(props = {}) {
 
   instance = createApp(App);
   instance.use(router);
+  instance.use(pinia);
 
 
 Sentry.init({

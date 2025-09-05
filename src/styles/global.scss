@@ -1,0 +1,365 @@
+@use './variables.scss' as *;
+
+// Global Reset and Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  
+  @include respond-to(md) {
+    font-size: var(--font-size-6xl);
+  }
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  
+  @include respond-to(md) {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+  
+  @include respond-to(md) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+  
+  @include respond-to(md) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+  
+  @include respond-to(md) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+  
+  @include respond-to(md) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  
+  &:hover {
+    color: var(--primary-color);
+    opacity: 0.8;
+  }
+}
+
+// Code styles
+code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background: rgba(var(--primary-color-rgb), 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--primary-color);
+}
+
+pre {
+  font-family: var(--font-family-mono);
+  background: var(--surface-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  
+  code {
+    background: none;
+    padding: 0;
+    color: var(--text-color);
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+  
+  li {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
+  }
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+// Forms
+input, textarea, select {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: all var(--transition-fast);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+
+button {
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all var(--transition-fast);
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--text-color-rgb), 0.3);
+  border-radius: var(--radius-full);
+  
+  &:hover {
+    background: rgba(var(--text-color-rgb), 0.5);
+  }
+}
+
+// Selection
+::selection {
+  background: rgba(var(--primary-color-rgb), 0.2);
+  color: var(--text-color);
+}
+
+// Utility Classes
+.container {
+  @include container;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.gradient-text {
+  @include gradient-text;
+}
+
+.glass-card {
+  @include glass-effect;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+}
+
+.btn-primary {
+  @include button-primary;
+}
+
+.card {
+  @include card;
+}
+
+// Layout utilities
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-1 { gap: var(--spacing-xs); }
+.gap-2 { gap: var(--spacing-sm); }
+.gap-3 { gap: var(--spacing-md); }
+.gap-4 { gap: var(--spacing-lg); }
+.gap-5 { gap: var(--spacing-xl); }
+.gap-6 { gap: var(--spacing-2xl); }
+
+// Spacing utilities
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+.p-6 { padding: var(--spacing-2xl); }
+
+.m-1 { margin: var(--spacing-xs); }
+.m-2 { margin: var(--spacing-sm); }
+.m-3 { margin: var(--spacing-md); }
+.m-4 { margin: var(--spacing-lg); }
+.m-5 { margin: var(--spacing-xl); }
+.m-6 { margin: var(--spacing-2xl); }
+
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+.mt-6 { margin-top: var(--spacing-2xl); }
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+.mb-6 { margin-bottom: var(--spacing-2xl); }
+
+// Animation classes
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Dark mode support
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+// Responsive typography
+@include respond-to(md) {
+  html {
+    font-size: 18px;
+  }
+}
+
+// Print styles
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  @page {
+    margin: 0.5in;
+  }
+}
