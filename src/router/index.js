@@ -1,9 +1,29 @@
-import Home from '@/views/Index.vue'
-import About from '@/views/Abouts.vue'
-import Projects from '@/views/Projects.vue'
-import TechPlayground from '@/views/TechPlayground.vue'
-import Blog from '@/views/Blog.vue'
-import Contact from '@/views/Contact.vue'
+// 懒加载路由组件 - 支持代码分割和加载提示
+const Home = () => import(
+  /* webpackChunkName: "home" */ 
+  /* webpackPreload: true */
+  '@/views/Index.vue'
+)
+const About = () => import(
+  /* webpackChunkName: "about" */ 
+  '@/views/Abouts.vue'
+)
+const Projects = () => import(
+  /* webpackChunkName: "projects" */ 
+  '@/views/Projects.vue'
+)
+const TechPlayground = () => import(
+  /* webpackChunkName: "playground" */ 
+  '@/views/TechPlayground.vue'
+)
+const Blog = () => import(
+  /* webpackChunkName: "blog" */ 
+  '@/views/Blog.vue'
+)
+const Contact = () => import(
+  /* webpackChunkName: "contact" */ 
+  '@/views/Contact.vue'
+)
 
 const routes = [
   {

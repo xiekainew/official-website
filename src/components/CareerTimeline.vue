@@ -289,31 +289,32 @@ onMounted(() => {
   @include card;
   max-width: 500px;
   position: relative;
-  
+  padding: var(--spacing-md);
   &::before {
     content: '';
     position: absolute;
     top: 30px;
-    left: -15px;
+    right: -15px;
     width: 0;
     height: 0;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-right: 15px solid var(--surface-color);
+    border-left: 15px solid var(--surface-color);
     
     @include respond-to(md) {
       .timeline-item--alternate & {
-        left: auto;
-        right: -15px;
-        border-right: none;
-        border-left: 15px solid var(--surface-color);
+        left: -15px;
+        right: auto;
+        border-left: none;
+        border-right: 15px solid var(--surface-color);
       }
     }
     
     @media (max-width: 767px) {
       left: -15px;
-      border-right: 15px solid var(--surface-color);
+      right: auto;
       border-left: none;
+      border-right: 15px solid var(--surface-color);
     }
   }
 }

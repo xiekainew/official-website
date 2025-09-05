@@ -147,42 +147,55 @@ const technologies = [
 const experiences = [
   {
     id: 1,
-    title: '高级前端工程师',
-    company: '科技有限公司',
-    period: '2022.03 - 至今',
-    description: '负责大型Web应用的前端架构设计和开发，带领团队完成多个重要项目。',
+    title: '资深前端工程师',
+    company: '高途教育科技',
+    period: '2020.03 - 2025.1',
+    description: '负责小程序项目的前端架构设计和开发，带领团队完成多个重要项目。',
     achievements: [
       '主导前端架构升级，性能提升40%',
       '建立组件库和设计系统',
-      '指导初级开发者技术成长'
+      '管理技术团队，完成项目目标'
     ],
-    technologies: ['Vue 3', 'TypeScript', 'Vite', 'Pinia']
+    technologies: ['Vue 3', 'React', 'Vite', 'Pinia', '小程序', 'Uniapp', 'Node.js']
   },
   {
     id: 2,
-    title: '前端工程师',
-    company: '互联网公司',
-    period: '2020.06 - 2022.03',
+    title: '高级前端工程师',
+    company: '字节跳动',
+    period: '2019.03 - 2020.03',
     description: '参与多个B端产品的开发，专注于用户体验优化和性能提升。',
     achievements: [
       '开发复杂数据可视化界面',
       '优化首屏加载时间至2秒内',
       '实现响应式设计适配'
     ],
-    technologies: ['React', 'Redux', 'Ant Design', 'ECharts']
+    technologies: ['Vue', 'Vuex', 'Element UI', 'ECharts']
+  },
+  {
+    id: 3,
+    title: '中级前端工程师',
+    company: '牛投邦科技',
+    period: '2017.11 - 2019.03',
+    description: '完成公司vue1.0到2.0的迁移工作，并负责新功能的开发。',
+    achievements: [
+      '开发nb-form、nb-table组件',
+      '制定开发规范',
+      '指导初级工程师'
+    ],
+    technologies: ['Vue 2', 'JavaScript', 'Element UI', 'Vuex']
   },
   {
     id: 3,
     title: '初级前端工程师',
-    company: '创业公司',
-    period: '2019.03 - 2020.06',
-    description: '参与公司产品从0到1的开发过程，积累了丰富的全栈开发经验。',
+    company: '北京厅客科技',
+    period: '2015.09 - 2017.11',
+    description: '完成公司vue1.0到2.0的迁移工作，并负责新功能的开发。',
     achievements: [
-      '独立完成移动端H5开发',
-      '学习掌握现代前端技术栈',
-      '参与产品原型设计讨论'
+      '开发nb-form、nb-table组件',
+      '制定开发规范',
+      '指导初级工程师'
     ],
-    technologies: ['Vue 2', 'JavaScript', 'Element UI', 'Node.js']
+    technologies: ['Vue 2', 'JavaScript', 'Element UI', 'Vuex']
   }
 ]
 
@@ -190,18 +203,18 @@ const experiences = [
 const education = [
   {
     id: 1,
-    degree: '计算机科学与技术学士',
-    school: '某某大学',
-    year: '2015 - 2019',
-    description: '主修计算机科学核心课程，专注于软件工程和Web技术方向。'
+    degree: '电子信息工程',
+    school: '烟台大学',
+    year: '2011 - 2015',
+    description: '主修电子信息工程核心课程，专注于电子计算机和Web技术方向。'
   },
-  {
-    id: 2,
-    degree: '前端工程师认证',
-    school: '在线学习平台',
-    year: '2019',
-    description: '系统学习现代前端开发技术，包括框架、工程化工具等。'
-  }
+  // {
+  //   id: 2,
+  //   degree: '前端工程师认证',
+  //   school: '在线学习平台',
+  //   year: '2019',
+  //   description: '系统学习现代前端开发技术，包括框架、工程化工具等。'
+  // }
 ]
 
 onMounted(() => {
@@ -416,7 +429,7 @@ onMounted(() => {
   gap: var(--spacing-xl);
   
   @include respond-to(md) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
