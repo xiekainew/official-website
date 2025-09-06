@@ -55,7 +55,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@use '@/styles/global.scss';
 
 #app {
   min-height: 100vh;

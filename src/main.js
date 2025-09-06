@@ -1,27 +1,22 @@
-import './public-path'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createApp } from 'vue'
 import App from './App.vue'
 import routes from './router'
 import pinia from './stores'
 import * as Sentry from "@sentry/vue";
+import '@/styles/global.scss'
 
-let router = null;
-let instance = null;
-function render(props = {}) {
-  const { container } = props;
-  router = createRouter({
-    history: createWebHistory(window.__POWERED_BY_QIANKUN__ ? '/app-vue/' : '/'),
-    routes,
-  });
+const router = createRouter({
+  history: createWebHistory('/'),
+  routes,
+});
 
-  instance = createApp(App);
-  instance.use(router);
-  instance.use(pinia);
-
+const app = createApp(App);
+app.use(router);
+app.use(pinia);
 
 Sentry.init({
-  app: instance,
+  app,
   dsn: "https://2d5c8a401d0ac4b48d6110811aa8f543@o4509955359506432.ingest.us.sentry.io/4509955362586624",
   // Setting this option to true will send default PII data to Sentry.
   // For example, automatic IP address collection on events
@@ -41,24 +36,4 @@ Sentry.init({
   enableLogs: true
 });
 
-
-  instance.mount(container ? container.querySelector('#app') : '#app');
-}
-
-if (!window.__POWERED_BY_QIANKUN__) {
-  render();
-}
-
-export async function bootstrap() {
-  console.log('Vue MicroApp bootstraped');
-}
-
-export async function mount(props) {
-  render(props);
-}
-
-export async function unmount() {
-  instance.unmount();
-  instance = null;
-  router = null;
-}
+app.mount('#app');
