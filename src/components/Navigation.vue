@@ -79,10 +79,10 @@ const isMobileMenuOpen = ref(false)
 const routes = [
   { name: 'Home', path: '/', label: '首页' },
   { name: 'About', path: '/about', label: '关于我' },
-  { name: 'Projects', path: '/projects', label: '项目展示' },
-  { name: 'TechPlayground', path: '/playground', label: '技术实验' },
+  // { name: 'Projects', path: '/projects', label: '项目展示' },
+  // { name: 'TechPlayground', path: '/playground', label: '技术实验' },
   { name: 'Blog', path: '/blog', label: '技术博客' },
-  { name: 'Contact', path: '/contact', label: '联系我' }
+  // { name: 'Contact', path: '/contact', label: '联系我' }
 ]
 
 const handleScroll = () => {

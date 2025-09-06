@@ -105,8 +105,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { gsap } from 'gsap'
+import { getArticleById, incrementArticleViews, toggleArticleLike } from '@/data/articles.js'
 
 const props = defineProps({
   article: {
@@ -120,32 +121,17 @@ const emit = defineEmits(['close'])
 const isLiked = ref(false)
 const scrollProgress = ref(0)
 const currentLikes = ref(props.article.likes)
+const isLoading = ref(false)
+const fullArticle = ref(null)
 
-// 简单的Markdown渲染
+// 渲染的内容
 const renderedContent = computed(() => {
-  let content = props.article.content || props.article.excerpt
+  if (fullArticle.value && fullArticle.value.renderedContent) {
+    return fullArticle.value.renderedContent
+  }
   
-  // 标题渲染
-  content = content.replace(/^### (.*$)/gim, '<h3>$1</h3>')
-  content = content.replace(/^## (.*$)/gim, '<h2>$1</h2>')
-  content = content.replace(/^# (.*$)/gim, '<h1>$1</h1>')
-  
-  // 代码块渲染
-  content = content.replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>')
-  content = content.replace(/`([^`]*)`/gim, '<code>$1</code>')
-  
-  // 粗体和斜体
-  content = content.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-  content = content.replace(/\*(.*?)\*/gim, '<em>$1</em>')
-  
-  // 段落
-  content = content.replace(/\n\n/gim, '</p><p>')
-  content = '<p>' + content + '</p>'
-  
-  // 清理空段落
-  content = content.replace(/<p><\/p>/gim, '')
-  
-  return content
+  // 如果还没有加载完整文章，显示摘要
+  return `<p>${props.article.excerpt}</p>`
 })
 
 const formatDate = (dateString) => {
@@ -157,9 +143,31 @@ const formatDate = (dateString) => {
   })
 }
 
+// 加载完整文章内容
+const loadFullArticle = async () => {
+  if (fullArticle.value) return // 已经加载过了
+  
+  isLoading.value = true
+  try {
+    const article = await getArticleById(props.article.id)
+    if (article) {
+      fullArticle.value = article
+      // 增加阅读量
+      incrementArticleViews(props.article.id)
+    }
+  } catch (error) {
+    console.error('Failed to load article:', error)
+  } finally {
+    isLoading.value = false
+  }
+}
+
 const toggleLike = () => {
   isLiked.value = !isLiked.value
   currentLikes.value += isLiked.value ? 1 : -1
+  
+  // 更新数据
+  toggleArticleLike(props.article.id, isLiked.value)
   
   // 点赞动画
   gsap.fromTo('.stat-button--active svg', {
@@ -189,7 +197,7 @@ const handleEscape = (e) => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   // 阻止背景滚动
   document.body.style.overflow = 'hidden'
   
@@ -201,6 +209,9 @@ onMounted(() => {
   if (modalBody) {
     modalBody.addEventListener('scroll', updateScrollProgress)
   }
+  
+  // 加载完整文章内容
+  await loadFullArticle()
   
   // 入场动画
   gsap.fromTo('.article-modal', {
@@ -235,6 +246,9 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @use '@/styles/variables.scss' as *;
+
+// 导入代码高亮样式
+@import 'highlight.js/styles/github-dark.css';
 .article-modal {
   position: fixed;
   top: 0;
@@ -397,18 +411,62 @@ onUnmounted(() => {
   }
   
   :deep(pre) {
-    background: var(--surface-color);
+    background: #0d1117;
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     overflow-x: auto;
     margin: var(--spacing-lg) 0;
     border: 1px solid var(--border-color);
+    position: relative;
     
     code {
       background: none;
       padding: 0;
-      color: var(--text-color);
+      color: #e6edf3;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
+    
+    // 添加复制按钮样式
+    &::before {
+      content: 'Code';
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      background: rgba(255, 255, 255, 0.1);
+      color: #e6edf3;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      font-family: var(--font-family-sans);
+    }
+  }
+  
+  // 代码高亮主题覆盖
+  :deep(.hljs) {
+    background: #0d1117 !important;
+    color: #e6edf3 !important;
+  }
+  
+  :deep(.hljs-keyword) {
+    color: #ff7b72 !important;
+  }
+  
+  :deep(.hljs-string) {
+    color: #a5d6ff !important;
+  }
+  
+  :deep(.hljs-comment) {
+    color: #8b949e !important;
+  }
+  
+  :deep(.hljs-number) {
+    color: #79c0ff !important;
+  }
+  
+  :deep(.hljs-function) {
+    color: #d2a8ff !important;
   }
   
   :deep(strong) {
