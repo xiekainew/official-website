@@ -191,7 +191,6 @@ const experiences = [
     period: '2015.07 - 2017.4',
     description: '完成公司vue1.0到2.0的迁移工作，并负责新功能的开发。',
     achievements: [
-      '开发nb-form、nb-table组件',
       '制定开发规范',
       '指导初级工程师'
     ],
