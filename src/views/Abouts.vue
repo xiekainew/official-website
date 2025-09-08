@@ -149,7 +149,7 @@ const experiences = [
     id: 1,
     title: '资深前端工程师',
     company: '高途教育科技',
-    period: '2020.03 - 2025.1',
+    period: '2020.03 - 2024.12',
     description: '负责小程序项目的前端架构设计和开发，带领团队完成多个重要项目。',
     achievements: [
       '主导前端架构升级，性能提升40%',
@@ -175,7 +175,7 @@ const experiences = [
     id: 3,
     title: '中级前端工程师',
     company: '牛投邦科技',
-    period: '2017.11 - 2019.03',
+    period: '2017.4 - 2019.03',
     description: '完成公司vue1.0到2.0的迁移工作，并负责新功能的开发。',
     achievements: [
       '开发nb-form、nb-table组件',
@@ -188,7 +188,7 @@ const experiences = [
     id: 3,
     title: '初级前端工程师',
     company: '北京厅客科技',
-    period: '2015.09 - 2017.11',
+    period: '2015.07 - 2017.4',
     description: '完成公司vue1.0到2.0的迁移工作，并负责新功能的开发。',
     achievements: [
       '开发nb-form、nb-table组件',
