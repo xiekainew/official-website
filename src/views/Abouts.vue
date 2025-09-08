@@ -160,8 +160,8 @@ const experiences = [
   },
   {
     id: 2,
-    title: '高级前端工程师',
-    company: '字节跳动',
+    title: '前端负责人',
+    company: '新湃传媒',
     period: '2019.03 - 2020.03',
     description: '参与多个B端产品的开发，专注于用户体验优化和性能提升。',
     achievements: [

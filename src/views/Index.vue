@@ -189,34 +189,34 @@ const coreSkills = [
 
 // 快速导航
 const quickNavItems = [
-  {
-    name: 'about',
-    path: '/about',
-    title: '关于我',
-    description: '了解我的技能、经历和专业背景',
-    icon: 'UserIcon'
-  },
-  {
-    name: 'projects',
-    path: '/projects',
-    title: '项目展示',
-    description: '查看我的精选作品和技术实现',
-    icon: 'CodeIcon'
-  },
-  {
-    name: 'playground',
-    path: '/playground',
-    title: '技术实验',
-    description: '体验各种前端技术的创新应用',
-    icon: 'BeakerIcon'
-  },
-  {
-    name: 'blog',
-    path: '/blog',
-    title: '技术博客',
-    description: '阅读我的技术分享和学习心得',
-    icon: 'DocumentIcon'
-  }
+  // {
+  //   name: 'about',
+  //   path: '/about',
+  //   title: '关于我',
+  //   description: '了解我的技能、经历和专业背景',
+  //   icon: 'UserIcon'
+  // },
+  // {
+  //   name: 'projects',
+  //   path: '/projects',
+  //   title: '项目展示',
+  //   description: '查看我的精选作品和技术实现',
+  //   icon: 'CodeIcon'
+  // },
+  // {
+  //   name: 'playground',
+  //   path: '/playground',
+  //   title: '技术实验',
+  //   description: '体验各种前端技术的创新应用',
+  //   icon: 'BeakerIcon'
+  // },
+  // {
+  //   name: 'blog',
+  //   path: '/blog',
+  //   title: '技术博客',
+  //   description: '阅读我的技术分享和学习心得',
+  //   icon: 'DocumentIcon'
+  // }
 ]
 
 // 3D粒子背景初始化
